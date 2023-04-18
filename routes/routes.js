@@ -16,7 +16,7 @@ router.get("/", (req,res) =>{
 
 //! *** Contact Us Routes *** !//
 router.route("/contact")
-  .get(ContactController.get_contact_us) /*** Get all Messages ***/
+  .get(ContactController.get_contact_us) /*** Get all Messagess ***/
   .post(ContactController.input_contact_us) /*** Add New Message ***/
 router.route("/contact/:id")
   .get(ContactController.edit_contact_us) /*** Get a Single Message ***/
