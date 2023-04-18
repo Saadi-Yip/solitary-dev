@@ -9,7 +9,10 @@ const CategoryController = require("../controllers/CategoryController");
 const PortfolioController = require('../controllers/PortfolioController');
 //-- ********************* Routes ********************* --// 
 
-//! *** Blog Routes *** !//
+
+router.get("/", (req,res) =>{
+  res.send("Solitary Dev Api")
+})
 
 //! *** Contact Us Routes *** !//
 router.route("/contact")
