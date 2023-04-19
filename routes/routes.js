@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router(); 
-// const upload = require("../middleware/MulterMiddleware"); 
-var multer = require('multer');
-const upload = multer({dest:'public/uploads'})
+const upload = require("../middleware/MulterMiddleware");  
 //-- *********** Import Controller Functions *********** --// 
 const ContactController = require("../controllers/ContactController"); 
 const CategoryController = require("../controllers/CategoryController");
@@ -30,13 +28,13 @@ router.route("/contact/:id")
   .post(CategoryController.input_category) /*** Add New Category ***/
 router.route("/category/:id")
   .get(CategoryController.edit_category) /*** Get a Single Category ***/
-  .put(CategoryController.update_category) /*** Update Category ***/
+  .patch(CategoryController.update_category) /*** Update Category ***/
   .delete(CategoryController.remove_category) /*** Remove Category ***/
   
   
   //! *** Portfolio Routes ***!//
   router.get("/project",PortfolioController.get_project) /*** Get all Project ***/
-  router.post("/project", PortfolioController.input_project) /*** Add New Project ***/
+  router.post("/project", upload.single('image'), PortfolioController.input_project) /*** Add New Project ***/
 router.route("/project/:id")
   .get(PortfolioController.edit_project) /*** Get a Single Project ***/
   .patch(PortfolioController.update_project) /*** Update Project ***/

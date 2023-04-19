@@ -51,7 +51,8 @@ module.exports = {
 
       let query = Project.find(JSON.parse(queryStr)).populate({
         path: "category",
-        model: "Category"
+        model: "Category",
+        select: "name _id"
       }); 
       
       // Sorting
