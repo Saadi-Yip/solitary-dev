@@ -1,11 +1,11 @@
 const axios = require('axios');
 const access_token = "leilani";
 const GetWebhook = (req, res) => { 
-   let mode =  req.query.hube.mode;
-   let challenge = req.query.hub.challenge;
-   let token = req.query.hub.token;
+   let mode =  req.query["hub.mode"];
+   let challenge = req.query["hub.challenge"];
+   let token = req.query["hub.verify_token"];
     if(mode && token) {
-        if(mode === "subscribe" && token === access_token) {
+        if(mode === "leilani" && token === access_token) {
             res.status(200).json({
                 challenge
             })
