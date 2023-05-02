@@ -5,6 +5,7 @@ const upload = require("../middleware/MulterMiddleware");
 const ContactController = require("../controllers/ContactController"); 
 const CategoryController = require("../controllers/CategoryController");
 const PortfolioController = require('../controllers/PortfolioController');
+const WebhookController = require('../controllers/WebhookController');
 //-- ********************* Routes ********************* --// 
 
 
@@ -37,9 +38,11 @@ router.route("/category/:id")
   router.post("/project", upload.single('image'), PortfolioController.input_project) /*** Add New Project ***/
 router.route("/project/:id")
   .get(PortfolioController.edit_project) /*** Get a Single Project ***/
-  .patch(PortfolioController.update_project) /*** Update Project ***/
+  .patch(upload.single('image'), PortfolioController.update_project) /*** Update Project ***/
   .delete(PortfolioController.remove_project) /*** Remove Project ***/
 
 
+
+  router.get("/whatsapp", WebhookController.GetWebhook);
 // -- /*** Export all Routes ***/ -- // 
 module.exports = router;

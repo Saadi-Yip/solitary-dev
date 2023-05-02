@@ -15,7 +15,7 @@ let portfolioSchema = new mongoose.Schema({
   category: { type: Schema.Types.ObjectId, ref: "Category" },
   url: {
     type: String,
-    required: [true,"Provider Url is Required!"]
+    required: [true,"Url is Required!"]
   },
   createdAt:{
     type: Date,

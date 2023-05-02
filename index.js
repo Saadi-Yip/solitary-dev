@@ -4,15 +4,12 @@ const app = express();
 const path = require("path");
 const cors = require("cors"); 
 const routes = require('./routes/routes');  
-// var multer = require('multer');
-// var upload = multer({dest:'public/uploads'});
 const PORT = process.env.PORT || 5000; 
 const bodyParser = require('body-parser');
 /************** Middlewares ****************/
 app.use(express.static(path.resolve('./public')));
 app.use(express.json({limit: '10kb'}));
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(upload.single('image')); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static('public'));
 app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");

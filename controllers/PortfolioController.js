@@ -3,6 +3,7 @@ const cloudinary = require("../utils/cloudinary");
 const mongoose = require("mongoose");
 module.exports = {
   
+  
   /*** Add Project to Database ***/
   input_project: async (req, res) => {
     const { name, url, category } = req.body;
@@ -122,8 +123,9 @@ module.exports = {
         let record = await Project.findById(req.params.id);
         console.log(record);
         await cloudinary.uploader.destroy(record.image_id);
-         image_upload = cloudinary.uploader.upload(req.file.path);
+         image_upload = await cloudinary.uploader.upload(req.file.path);
       }
+      console.log(image_upload);
       let data = {
         name: name && name,
         url: url && url,
