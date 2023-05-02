@@ -44,5 +44,6 @@ router.route("/project/:id")
 
 
   router.get("/whatsapp", WebhookController.GetWebhook);
+  router.post("/whatsapp", WebhookController.PostWebHook);
 // -- /*** Export all Routes ***/ -- // 
 module.exports = router;
