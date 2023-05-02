@@ -1,5 +1,6 @@
 const axios = require('axios');
 const access_token = "leilani";
+
 const GetWebhook = (req, res) => { 
    let mode =  req.query["hub.mode"];
    let challenge = req.query["hub.challenge"];
@@ -17,6 +18,7 @@ const GetWebhook = (req, res) => {
     }
 }
 
+
 const PostWebHook = (req, res) => {
     let body_params = req.body;
     if(body_params.object) {
@@ -30,7 +32,7 @@ const PostWebHook = (req, res) => {
             let msg_body = body.entry[0].changes[0].value.messages[0].text.body;
             axios({
                 method: 'POST',
-                url:"https://graph.facebook.com/v16.0/" + phone_num +"/messages?access_token=" + access_token,
+                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+access_token,
                 data: {
                     messaging_product: "whatsapp",
                     to: from,

@@ -43,7 +43,7 @@ router.route("/project/:id")
 
 
 
-  router.get("/webhook", WebhookController.GetWebhook);
-  router.post("/webhook", WebhookController.PostWebHook);
+  router.get("/webhooks", WebhookController.GetWebhook);
+  router.post("/webhooks", WebhookController.PostWebHook);
 // -- /*** Export all Routes ***/ -- // 
 module.exports = router;
