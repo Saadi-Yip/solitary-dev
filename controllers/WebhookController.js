@@ -12,7 +12,7 @@ const GetWebhook = (req, res) => {
             res.status(403).send("Invalid Token")
         }
     } else {
-        res.status(403).send("No data found")
+        res.status(403).send(req)
     }
 }
 
