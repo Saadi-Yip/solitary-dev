@@ -7,9 +7,7 @@ const GetWebhook = (req, res) => {
    let token = req.query["hub.verify_token"];
     if(mode && token) {
         if(mode === "subscribe" && token === access_token) {
-            res.status(200).json({
-                challenge
-            })
+            res.status(200).send(challenge)
         } else {
             res.status(403).send("Invalid Token")
         }
