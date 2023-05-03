@@ -31,20 +31,20 @@ const PostWebHook = (req, res) => {
             let msg_body = body.entry[0].changes[0].value.messages[0].text.body;
             console.log("from: " + from);
             console.log(msg_body);
-            axios({
-                method: 'POST',
-                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+verify_token,
-                data: {
-                    messaging_product: "whatsapp",
-                    to: from,
-                    text: {
-                        body:"Hi.... this is leilani tech"
-                    }
-                },
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+            // axios({
+            //     method: 'POST',
+            //     url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+verify_token,
+            //     data: {
+            //         messaging_product: "whatsapp",
+            //         to: from,
+            //         text: {
+            //             body:"Hi.... this is leilani tech"
+            //         }
+            //     },
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // })
             res.status(200)
         }  else {
             res.status(404)
