@@ -2,11 +2,7 @@ const axios = require('axios');
 const { json } = require('express');
 const access_token = "leilani";
 const verify_token = "EAACeQgnE6WcBAAsHZCpfU4NZA38wFR7NjYRA0woJrcmSjthBBlAQBnczuE0NJASNpED5ZAsjFqWqodLxF0qR3po2ukkdLsU1AJQTJYO9FffIOHstrO9ZC4owRB9vjAzZA2xIkQHWcZBdZCPLQYsJkR2ZC82R1kLObMlUTZB2GNZBZCWcc9W7Jl0vJcfhyLj25ywZCYFWQ1HXjBe5aQZDZD"
-let config = {
-    headers: {
-      'Authorization': 'Bearer ' + verify_token
-    }
-  }
+ 
 
 const GetWebhook = (req, res) => { 
    let mode =  req.query["hub.mode"];
@@ -37,21 +33,21 @@ const PostWebHook = (req, res) => {
             let phone_num = body_params.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
-            axios({
-                method: 'POST',
-                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+verify_token,
-                data: {
-                    messaging_product: "whatsapp",
-                    to: from,
-                    text: {
-                        body:"Hi.... this is leilani tech"
-                    }
-                },
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": 'Bearer ' + verify_token
-                }
-            })
+            // axios({
+            //     method: 'POST',
+            //     url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+verify_token,
+            //     data: {
+            //         messaging_product: "whatsapp",
+            //         to: from,
+            //         text: {
+            //             body:"Hi.... this is leilani tech"
+            //         }
+            //     },
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "authorization": 'Bearer ' + verify_token
+            //     }
+            // })
             res.status(200).send(msg_body);
         }  else {
             res.status(404)
