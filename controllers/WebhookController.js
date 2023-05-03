@@ -1,7 +1,13 @@
 const axios = require('axios');
 const { json } = require('express');
 const access_token = "leilani";
-const verify_token = "EAACeQgnE6WcBAG1ZBW6IxP5ezxwDOgVwqZA4MgS69OkFfUFEORX1ThPspHmOD1gY3IqVsZAicWno7OhFzcDohWi01ZBBeAxiL3PhlckWYWE6u0xZCNm6P92kcPyOCZBAmCmh0GuLZC2wJiI7Dxu9StKW0uvthHfG6olW78ufFFLHAZB4X7OyOQEw9D5afbhXagAWGOeWyqEHqAZDZD"
+const verify_token = "EAACeQgnE6WcBAAsHZCpfU4NZA38wFR7NjYRA0woJrcmSjthBBlAQBnczuE0NJASNpED5ZAsjFqWqodLxF0qR3po2ukkdLsU1AJQTJYO9FffIOHstrO9ZC4owRB9vjAzZA2xIkQHWcZBdZCPLQYsJkR2ZC82R1kLObMlUTZB2GNZBZCWcc9W7Jl0vJcfhyLj25ywZCYFWQ1HXjBe5aQZDZD"
+let config = {
+    headers: {
+      'Authorization': 'Bearer ' + verify_token
+    }
+  }
+
 const GetWebhook = (req, res) => { 
    let mode =  req.query["hub.mode"];
    let challenge = req.query["hub.challenge"];
@@ -31,12 +37,10 @@ const PostWebHook = (req, res) => {
             let phone_num = body_params.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
-            console.log("from: " + from);
-            console.log("recieved");
-            console.log(msg_body);
             axios({
                 method: 'POST',
-                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+verify_token,
+                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token=",
+                config,
                 data: {
                     messaging_product: "whatsapp",
                     to: from,
