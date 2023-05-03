@@ -39,7 +39,7 @@ const PostWebHook = (req, res) => {
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             axios({
                 method: 'POST',
-                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token=",
+                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages",
                 config,
                 data: {
                     messaging_product: "whatsapp",
