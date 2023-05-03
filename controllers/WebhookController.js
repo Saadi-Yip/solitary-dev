@@ -24,8 +24,8 @@ const PostWebHook = (req, res) => {
     if(body_params.object) { 
         if(body_params.entry &&
             body_params.entry[0].changes &&
-            body_params.entry[0].changes[0].value.message &&
-            body_params.entry[0].changes[0].value.message[0] 
+            body_params.entry[0].changes[0].value.messages &&
+            body_params.entry[0].changes[0].value.messages[0] 
         ) {
             console.log("inner function");
             let phone_num = body.entry[0].challenge[0].value.metadata.phone_number_id;
