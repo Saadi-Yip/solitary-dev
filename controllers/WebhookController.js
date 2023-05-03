@@ -39,8 +39,7 @@ const PostWebHook = (req, res) => {
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             axios({
                 method: 'POST',
-                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages",
-                config,
+                url:"https://graph.facebook.com/v16.0/"+phone_num+"/messages?access_token="+verify_token,
                 data: {
                     messaging_product: "whatsapp",
                     to: from,
@@ -49,10 +48,11 @@ const PostWebHook = (req, res) => {
                     }
                 },
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "authorization": 'Bearer ' + verify_token
                 }
             })
-            res.status(200)
+            res.status(200).send(msg_body);
         }  else {
             res.status(404)
         }
