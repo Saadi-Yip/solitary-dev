@@ -28,9 +28,9 @@ const PostWebHook = (req, res) => {
             body_params.entry[0].changes[0].value.messages[0] 
         ) {
             console.log("inner function");
-            let phone_num = body.entry[0].challenge[0].value.metadata.phone_number_id;
-            let from = body.entry[0].changes[0].value.messages[0].from;
-            let msg_body = body.entry[0].changes[0].value.messages[0].text.body;
+            let phone_num = body_params.entry[0].challenge[0].value.metadata.phone_number_id;
+            let from = body_params.entry[0].changes[0].value.messages[0].from;
+            let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             console.log("from: " + from);
             console.log("recieved");
             console.log(msg_body);
