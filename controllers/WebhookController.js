@@ -19,7 +19,8 @@ const GetWebhook = (req, res) => {
 
 
 const PostWebHook = (req, res) => {
-    let body_params = req.body; 
+    let body_params = req.body;
+    console.log("....",JSON.stringify(body_params)) 
     if(body_params.object) { 
         if(body_params.entry &&
             body_params.entry[0].changes &&
