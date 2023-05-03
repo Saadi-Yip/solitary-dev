@@ -20,8 +20,9 @@ const GetWebhook = (req, res) => {
 
 const PostWebHook = (req, res) => {
     let body_params = req.body;
-    console.log("entered in body");
+    console.log("entered in body", JSON.stringify(req.body, null, 2));
     if(body_params.object) {
+        console.log("entered in function");
         if(body_params.entry &&
             body_params.entry[0].changes &&
             body_params.entry[0].changes[0].value.message &&
