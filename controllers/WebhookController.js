@@ -19,15 +19,14 @@ const GetWebhook = (req, res) => {
 
 
 const PostWebHook = (req, res) => {
-    let body_params = req.body;
-    console.log("entered in body", JSON.stringify(req.body, null, 2));
-    if(body_params.object) {
-        console.log("entered in function");
+    let body_params = req.body; 
+    if(body_params.object) { 
         if(body_params.entry &&
             body_params.entry[0].changes &&
             body_params.entry[0].changes[0].value.message &&
             body_params.entry[0].changes[0].value.message[0] 
         ) {
+            console.log("inner function");
             let phone_num = body.entry[0].challenge[0].value.metadata.phone_number_id;
             let from = body.entry[0].changes[0].value.messages[0].from;
             let msg_body = body.entry[0].changes[0].value.messages[0].text.body;
