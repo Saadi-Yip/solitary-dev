@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { json } = require('express');
 const access_token = "leilani";
-const verify_token = "EAACeQgnE6WcBACXfuk9430mH2hCE6FTGZBBJjTgDTitEKA5Bv8ZCZA0Sqq1WZCa9WMtanutpgh0ZBpCPN53P7Vx3AsH2ZBja7ZAO9ZB7xiURRPOhZALH7tzbQZA6kNljhfoZCfXQNvRjKnQwfgDcX1wOV39zS6NBIAr3knQMCplsFpGevHKCOMMUTemhNgn66vN3NRdeWmCmMt4NQZDZD"
+const post_token = "EAACeQgnE6WcBAGATjdVZBMtV231a4kwnxf6Hsf6ZB64cuxgWhhN17h5HozBS7JZBd6qdZAb8g4KQUkPJI33XICtnirspauz5f5UfTHrEwZAfVcgkrUmax2ELllfH6DNsFGZBuZAQZC9sZAFHuTQ7px8P5bhi9GTq2nkDOBvXdpe8ZAmzEZA1kZBZAxm4QFvYpC03CU76oXJZCoGc2CDAZDZD"
  
 const GetWebhook = (req, res) => { 
     
@@ -33,22 +33,23 @@ const PostWebHook = async(req, res) => {
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             let data = {
-                messaging_product: "whatsapp",
-                type:"text",
-                recipient_type:"individual",
-                to: from,
-                text: {
+                "messaging_product": "whatsapp",
+                "type":"text",
+                "recipient_type":"individual",
+                "to": 923056483484,
+                "text": {
                     "preview_url":false,
-                    "body":"Hi.... this is leilani tech"
+                    "body":"Hi..."
                 }
             }
             
-            const postData = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages?access_token=${verify_token}`,
+            
+            const postData = await fetch(`https://graph.facebook.com/v16.0/110855645334141/messages`,
                 {
                     method: 'POST',
                     body: data,
                     headers: {
-                        'Authorization': 'Bearer ' + verify_token,
+                        'Authorization': 'Bearer ' + post_token,
                         'Content_Type': 'application/json'
                     } 
                 }   
@@ -57,7 +58,6 @@ const PostWebHook = async(req, res) => {
                 console.log(postData.status);
             }
         }
-           
     }
 }
 
