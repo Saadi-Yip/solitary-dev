@@ -36,7 +36,7 @@ const PostWebHook = async(req, res) => {
              
             axios({
                 method: "POST",
-                url: `https://graph.facebook.com/v16.0/110855645334141/messages`,
+                url: `https://graph.facebook.com/v16.0/110855645334141/messages?access_token=${post_token}`,
                 data: {
                     messaging_product: "whatsapp",
                     type:"text",
