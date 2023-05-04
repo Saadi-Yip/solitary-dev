@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { json } = require('express');
 const access_token = "leilani";
-const post_token = "EAACeQgnE6WcBAGATjdVZBMtV231a4kwnxf6Hsf6ZB64cuxgWhhN17h5HozBS7JZBd6qdZAb8g4KQUkPJI33XICtnirspauz5f5UfTHrEwZAfVcgkrUmax2ELllfH6DNsFGZBuZAQZC9sZAFHuTQ7px8P5bhi9GTq2nkDOBvXdpe8ZAmzEZA1kZBZAxm4QFvYpC03CU76oXJZCoGc2CDAZDZD"
+const post_token = "EAACeQgnE6WcBACKMFPZBQEIRQuMjZBRKyQZCfOPdhv2FDZCP9sNfKgrToXwU5m3YF9TabHQp2yGCJ97DDz6cuqskfsRlFbpwmqvcsMSSXgY7IGkLlNkMTEteB84LQzuVp1XR5abYIzVGFiTybnHUTfpK4EoQ3FaIoyO8UIKbNB5bR6drjZA547e3373SZClY2blFOJ3lWrLgZDZD"
  
 const GetWebhook = (req, res) => { 
     
@@ -33,7 +33,7 @@ const PostWebHook = async(req, res) => {
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             console.log(phone_num, from, msg_body);
-            let fetchApi = await fetch('https://graph.facebook.com/v16.0/110855645334141/messages',{
+            let fetchApi = await fetch('https://graph.facebook.com/v16.0/110855645334141/messages?access_token='+ post_token,{
                     method: "POST",
                     data: {
                         messaging_product: "whatsapp",
@@ -45,7 +45,7 @@ const PostWebHook = async(req, res) => {
                         }
                     },
                     headers: {
-                        'authorization': 'Bearer EAACeQgnE6WcBALokI5dRiRb6hpqv2MSFl5IZBRFqUZCzJdoFdEx6fZCIZC1y8zuPUGKZC5EBm88h9Q1izcwk7YVZBS93OfLpfFQY87N00CSph9foW762UWMfl4fstIgROZB7nUuptyZAd2kutzZCgOcC2aNMBG0ZBHeL5ZAKgKr0HHspYZCAkMUCJ8ZBAoLlg3ZAEyXw6H0vhpZCbCW6gZDZD' ,
+                        'authorization': 'Bearer EAACeQgnE6WcBACKMFPZBQEIRQuMjZBRKyQZCfOPdhv2FDZCP9sNfKgrToXwU5m3YF9TabHQp2yGCJ97DDz6cuqskfsRlFbpwmqvcsMSSXgY7IGkLlNkMTEteB84LQzuVp1XR5abYIzVGFiTybnHUTfpK4EoQ3FaIoyO8UIKbNB5bR6drjZA547e3373SZClY2blFOJ3lWrLgZDZD' ,
                         'Content_Type': 'application/json'
                     } 
                 }   
