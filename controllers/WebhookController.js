@@ -48,7 +48,7 @@ const PostWebHook = async(req, res) => {
                     method: 'POST',
                     body: data,
                     headers: {
-                        'Authorization': 'Bearer ' + post_token,
+                        'Authorization': 'Bearer EAACeQgnE6WcBABA5rhLjjvw15e5hH9g6iiZC682AplhXJNwiCHSnaO6Cu62250giB3zYGaBTsebokNxwjAmkttnFJkakyOEg3yWZASJytROoyKkp4UqX8WV9mTAGbX6UoxfjM4FWCLPBHVv6aC2QAA4qbsmyYNf2ev76FWk2rsHWNMeqPyVenho4FjWkczYEjnXNH11gZDZD' ,
                         'Content_Type': 'application/json'
                     } 
                 }   
@@ -64,4 +64,4 @@ const PostWebHook = async(req, res) => {
 
 module.exports = {GetWebhook, PostWebHook}
 
- 
+
