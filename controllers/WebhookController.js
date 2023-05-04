@@ -31,23 +31,31 @@ const PostWebHook = (req, res) => {
             let phone_num = body_params.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
-            axios({
-                method: 'POST',
-                url:`https://graph.facebook.com/v16.0/105954558954427/messages`,
+            let data = {
+                messaging_product: "whatsapp",
+                type:"text",
+                recipient_type:"individual",
                 to: from,
-                data: {
-                    messaging_product: "whatsapp",
-                    to: from,
-                    text: {
-                        body:"Hi.... this is leilani tech"
-                    }
-                },
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": 'Bearer ' + verify_token
+                text: {
+                    preview_url:false,
+                    body:"Hi.... this is leilani tech"
                 }
+            }
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT fefege...'
+              }
+
+            axios.post(`https://graph.facebook.com/v16.0/${from}/messages`,data,
+                {
+                    headers:headers
+                }
+            ).then((response) =>{
+                console.log("Axios Response: " + response);
+            }).catch((err) =>{
+                console.log("Axios Error", err.message);
             })
-            res.status(200).json({"body...": msg_body});
+            res.status(200) 
         }  else {
             res.status(404)
         }
