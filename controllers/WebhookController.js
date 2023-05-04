@@ -55,7 +55,7 @@ const PostWebHook = async(req, res) => {
             
             ) 
             if (postData) {
-                console.log("sent");
+                console.log(postData);
             }
         }
            
