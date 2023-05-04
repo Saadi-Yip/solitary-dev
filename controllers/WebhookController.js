@@ -48,7 +48,7 @@ const PostWebHook = (req, res) => {
                     "authorization": 'Bearer ' + verify_token
                 }
             })
-            res.status(200).send(".............message............", msg_body);
+            res.status(200).json({"body...": msg_body});
         }  else {
             res.status(404)
         }
