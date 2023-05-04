@@ -51,11 +51,9 @@ const PostWebHook = async(req, res) => {
                     } 
                 }   
             ) 
-            if (postData.status == '401' || postData.status == '400') {
-                console.log("Sending error", postData.status);
-            } else {
-                console.log("Successfully Added!")
-            }
+             res.status(200)
+        } else {
+            res.status(400);
         }
     }
 }
