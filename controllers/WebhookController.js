@@ -52,10 +52,9 @@ const PostWebHook = async(req, res) => {
                         'Content_Type': 'application/json'
                     } 
                 }   
-            
             ) 
             if (postData) {
-                console.log(postData);
+                console.log(postData.status);
             }
         }
            
