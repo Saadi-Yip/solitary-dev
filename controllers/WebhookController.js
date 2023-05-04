@@ -43,7 +43,7 @@ const PostWebHook = (req, res) => {
             }
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': 'JWT fefege...'
+                'Authorization': 'Bearer' + verify_token
               }
 
             axios.post(`https://graph.facebook.com/v16.0/${from}/messages`,data,
