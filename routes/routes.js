@@ -39,7 +39,10 @@ router.route("/project/:id")
   .patch(upload.single('image'), PortfolioController.update_project) /*** Update Project ***/
   .delete(PortfolioController.remove_project) /*** Remove Project ***/
 
-  router.get("/webhook", WebhookController.GetWebhook);
+  router.get("/webhook",  WebhookController.GetWebhook);
   router.post("/webhook", WebhookController.PostWebHook);
 // -- /*** Export all Routes ***/ -- // 
 module.exports = router;
+
+
+ 

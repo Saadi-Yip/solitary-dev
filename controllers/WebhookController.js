@@ -4,6 +4,7 @@ const access_token = "leilani";
 const verify_token = "EAACeQgnE6WcBACXfuk9430mH2hCE6FTGZBBJjTgDTitEKA5Bv8ZCZA0Sqq1WZCa9WMtanutpgh0ZBpCPN53P7Vx3AsH2ZBja7ZAO9ZB7xiURRPOhZALH7tzbQZA6kNljhfoZCfXQNvRjKnQwfgDcX1wOV39zS6NBIAr3knQMCplsFpGevHKCOMMUTemhNgn66vN3NRdeWmCmMt4NQZDZD"
  
 const GetWebhook = (req, res) => { 
+    
    let mode =  req.query["hub.mode"];
    let challenge = req.query["hub.challenge"];
    let token = req.query["hub.verify_token"];
@@ -18,7 +19,7 @@ const GetWebhook = (req, res) => {
     }
 }
 
-const PostWebHook = (req, res) => {
+const PostWebHook = async(req, res) => {
     let body_params = req.body;
     console.log("....",JSON.stringify(body_params)) 
     if(body_params.object) { 
@@ -42,28 +43,25 @@ const PostWebHook = (req, res) => {
                 }
             }
             
-
-           fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`, 
-            {
-                method: POST,
-                body : data
-            },
-              {
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${verify_token}`
-                }
-            },
-            ).then((response) =>{
-                console.log("Axios Response: " + response);
-            }).catch((err) =>{
-                console.log("Axios Error.........", err.message);
-            })
-            res.status(200) 
-        }  else {
-            res.status(404)
+            const fetch = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        Authorization: 'Bearer ' + verify_token,
+                        Content_Type: 'application/json'
+                    } 
+                }   
+            
+            ) 
+            if (fetch) {
+                console.log("sent");
+            }
         }
+           
     }
 }
 
 module.exports = {GetWebhook, PostWebHook}
+
+ 
