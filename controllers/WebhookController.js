@@ -48,8 +48,8 @@ const PostWebHook = async(req, res) => {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: {
-                        Authorization: 'Bearer ' + verify_token,
-                        Content_Type: 'application/json'
+                        'Authorization': 'Bearer ' + verify_token,
+                        'Content_Type': 'application/json'
                     } 
                 }   
             
