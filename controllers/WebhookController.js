@@ -32,32 +32,27 @@ const PostWebHook = async(req, res) => {
             let phone_num = body_params.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
-            let data = {
-                "messaging_product": "whatsapp",
-                "type":"text",
-                "recipient_type":"individual",
-                "to": 923056483484,
-                "text": {
-                    "preview_url":false,
-                    "body":"Hi..."
-                }
-            }
-            
-            const postData = await fetch(`https://graph.facebook.com/v16.0/110855645334141/messages`,
-                {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Authorization': 'Bearer EAACeQgnE6WcBABA5rhLjjvw15e5hH9g6iiZC682AplhXJNwiCHSnaO6Cu62250giB3zYGaBTsebokNxwjAmkttnFJkakyOEg3yWZASJytROoyKkp4UqX8WV9mTAGbX6UoxfjM4FWCLPBHVv6aC2QAA4qbsmyYNf2ev76FWk2rsHWNMeqPyVenho4FjWkczYEjnXNH11gZDZD' ,
-                        'Content_Type': 'application/json'
-                    } 
-                }   
-            ) 
-            if (postData.status == '401' || postData.status == '400') {
-                console.log("Sending error", postData.status);
-            } else {
-                console.log("Successfully Added!")
-            }
+            console.log(phone_num, from, msg_body);
+             
+            axios({
+                method: "POST",
+                url: `https://graph.facebook.com/v16.0/110855645334141/messages`,
+                data: {
+                    messaging_product: "whatsapp",
+                    type:"text",
+                    recipient_type:"individual",
+                    to: "923056483484", 
+                    text: { 
+                        body:"Hi..."
+                    }
+                },
+                headers: {
+                      'Content_Type': 'application/json'
+                } 
+            }) 
+             res.status(200)
+        } else {
+            res.status(401)
         }
     }
 }
