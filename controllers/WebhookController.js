@@ -43,7 +43,7 @@ const PostWebHook = async(req, res) => {
                 }
             }
             
-            const postData = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,
+            const postData = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages?access_token=${verify_token}`,
                 {
                     method: 'POST',
                     body: data,
