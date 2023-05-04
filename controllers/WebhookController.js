@@ -36,7 +36,7 @@ const PostWebHook = async(req, res) => {
              
             axios({
                 method: "POST",
-                url: `https://graph.facebook.com/v16.0/110855645334141/messages?access_token=${post_token}`,
+                url: `https://graph.facebook.com/v16.0/110855645334141/messages`,
                 data: {
                     messaging_product: "whatsapp",
                     type:"text",
@@ -47,12 +47,13 @@ const PostWebHook = async(req, res) => {
                     }
                 },
                 headers: {
-                      'Content_Type': 'application/json'
+                      'Content_Type': 'application/json',
+                      'Authorization': 'Bearer ' + post_token
                 } 
             }) 
              res.status(200)
         } else {
-            res.status(401)
+            res.status("failed....",401)
         }
     }
 }
