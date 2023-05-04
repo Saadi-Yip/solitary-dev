@@ -45,10 +45,9 @@ const PostWebHook = (req, res) => {
 
             axios.post(`https://graph.facebook.com/v16.0/${phone_num}/messages`, 
                 {
-                    body: JSON.stringify({
-                    ...data
-              }),
-              
+                data
+                },
+              {
                 headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${verify_token}`
@@ -57,7 +56,7 @@ const PostWebHook = (req, res) => {
             ).then((response) =>{
                 console.log("Axios Response: " + response);
             }).catch((err) =>{
-                console.log("Axios Error.........", err);
+                console.log("Axios Error.........", err.message);
             })
             res.status(200) 
         }  else {
