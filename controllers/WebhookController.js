@@ -41,19 +41,22 @@ const PostWebHook = (req, res) => {
                     "body":"Hi.... this is leilani tech"
                 }
             }
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer' + verify_token
-              }
+            
 
-            axios.post(`https://graph.facebook.com/v16.0/${phone_num}/messages`,data,
+            axios.post(`https://graph.facebook.com/v16.0/${phone_num}/messages`, 
                 {
-                    headers:headers
+                data
+                },
+              {
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${verify_token}`
                 }
+            },
             ).then((response) =>{
                 console.log("Axios Response: " + response);
             }).catch((err) =>{
-                console.log("Axios Error", err);
+                console.log("Axios Error.........", err);
             })
             res.status(200) 
         }  else {
