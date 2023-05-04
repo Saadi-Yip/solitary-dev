@@ -32,11 +32,11 @@ const PostWebHook = (req, res) => {
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             let data = {
-                "messaging_product": "whatsapp",
-                "type":"text",
-                "recipient_type":"individual",
-                "to": from,
-                "text": {
+                messaging_product: "whatsapp",
+                type:"text",
+                recipient_type:"individual",
+                to: from,
+                text: {
                     "preview_url":false,
                     "body":"Hi.... this is leilani tech"
                 }
@@ -46,7 +46,7 @@ const PostWebHook = (req, res) => {
                 'Authorization': 'Bearer' + verify_token
               }
 
-            axios.post(`https://graph.facebook.com/v16.0/${from}/messages`,data,
+            axios.post(`https://graph.facebook.com/v16.0/+923056483484/messages`,data,
                 {
                     headers:headers
                 }
