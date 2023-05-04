@@ -1,6 +1,4 @@
 const Category = require("../models/Category");
-
-
 module.exports = {
   /*** Add Contact Us Message to Database ***/
   input_category: async (req, res) => {  
@@ -19,7 +17,6 @@ module.exports = {
     }
   },
 
-
   /*** Get Contact Us messages from Database ***/
   get_category: async (req, res) => {
     try {
@@ -35,7 +32,6 @@ module.exports = {
         res.status(401).json({status:'fail', message: err.message});
     }
   },
-
 
   /*** edit an existing contact us message ***/
   edit_category: async (req, res) => {

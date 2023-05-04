@@ -8,7 +8,6 @@ const PortfolioController = require('../controllers/PortfolioController');
 const WebhookController = require('../controllers/WebhookController');
 //-- ********************* Routes ********************* --// 
 
-
 router.get("/", (req,res) =>{
   res.send("Solitary Dev Api")
 })
@@ -21,7 +20,6 @@ router.route("/contact/:id")
   .get(ContactController.edit_contact_us) /*** Get a Single Message ***/
   .patch(ContactController.update_contact_us) /*** Update Message ***/
   .delete(ContactController.remove_contact_us) /*** Remove Message ***/
-
 
   //! *** Category Routes ***!//
   router.route("/category")
@@ -40,8 +38,6 @@ router.route("/project/:id")
   .get(PortfolioController.edit_project) /*** Get a Single Project ***/
   .patch(upload.single('image'), PortfolioController.update_project) /*** Update Project ***/
   .delete(PortfolioController.remove_project) /*** Remove Project ***/
-
-
 
   router.get("/webhook", WebhookController.GetWebhook);
   router.post("/webhook", WebhookController.PostWebHook);
