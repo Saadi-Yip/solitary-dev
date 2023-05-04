@@ -51,7 +51,7 @@ const PostWebHook = async(req, res) => {
                 }   
             ) 
             if(fetchApi)
-            console.log(fetchApi);
+            console.log(fetchApi.status);
              res.status(200)
         } else {
             res.status(400);
