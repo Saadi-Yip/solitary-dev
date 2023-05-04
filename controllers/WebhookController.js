@@ -46,13 +46,13 @@ const PostWebHook = async(req, res) => {
                         }
                     },
                     headers: {
-                        'authorization': 'Bearer EAACeQgnE6WcBALvkDT1XyrwBpeKlZC8HNZC6IBW72PW5fWt51kS9ZBhhL3tQLPEOQraWv0r6zBTqWjsoUTidGb216gYsdk8wcN225vs4TmIkGucHwQoCzbrCiWqAKymgJfJ5PHnOBLLCZBU4UbMAWFvjHA4skrUQZBg7xognh8LSGGeOVs7dNaZBWcJNiUyzelT0t21KMhxgZDZD' ,
+                        'Authorization': 'Bearer EAACeQgnE6WcBALvkDT1XyrwBpeKlZC8HNZC6IBW72PW5fWt51kS9ZBhhL3tQLPEOQraWv0r6zBTqWjsoUTidGb216gYsdk8wcN225vs4TmIkGucHwQoCzbrCiWqAKymgJfJ5PHnOBLLCZBU4UbMAWFvjHA4skrUQZBg7xognh8LSGGeOVs7dNaZBWcJNiUyzelT0t21KMhxgZDZD' ,
                         'Content_Type': 'application/json'
                     } 
                 }   
             ) 
             if(fetchApi)
-            console.log(fetchApi.status);
+            console.log(fetchApi);
              res.status(200)
         } else {
             res.status(400);
