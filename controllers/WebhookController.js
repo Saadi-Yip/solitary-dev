@@ -53,7 +53,7 @@ const PostWebHook = (req, res) => {
             ).then((response) =>{
                 console.log("Axios Response: " + response);
             }).catch((err) =>{
-                console.log("Axios Error", err.message);
+                console.log("Axios Error", err);
             })
             res.status(200) 
         }  else {
