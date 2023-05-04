@@ -36,16 +36,17 @@ const PostWebHook = async(req, res) => {
             let fetchApi = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,{
                     method: "POST",
                     data: {
-                        messaging_product: "whatsapp",
-                        type:"text",
-                        recipient_type:"individual",
-                        to: from,
-                        text: { 
-                            body:"Hi..."
+                        "messaging_product": "whatsapp",
+                        "type":"text",
+                        "recipient_type":"individual",
+                        "to": 923056483484,
+                        "text": {
+                            "preview_url":false,
+                            "body":"Hi..."
                         }
                     },
                     headers: {
-                        'authorization': 'Bearer EAACeQgnE6WcBACKMFPZBQEIRQuMjZBRKyQZCfOPdhv2FDZCP9sNfKgrToXwU5m3YF9TabHQp2yGCJ97DDz6cuqskfsRlFbpwmqvcsMSSXgY7IGkLlNkMTEteB84LQzuVp1XR5abYIzVGFiTybnHUTfpK4EoQ3FaIoyO8UIKbNB5bR6drjZA547e3373SZClY2blFOJ3lWrLgZDZD' ,
+                        'authorization': 'Bearer EAACeQgnE6WcBALvkDT1XyrwBpeKlZC8HNZC6IBW72PW5fWt51kS9ZBhhL3tQLPEOQraWv0r6zBTqWjsoUTidGb216gYsdk8wcN225vs4TmIkGucHwQoCzbrCiWqAKymgJfJ5PHnOBLLCZBU4UbMAWFvjHA4skrUQZBg7xognh8LSGGeOVs7dNaZBWcJNiUyzelT0t21KMhxgZDZD' ,
                         'Content_Type': 'application/json'
                     } 
                 }   
