@@ -33,9 +33,8 @@ const PostWebHook = async(req, res) => {
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             console.log(phone_num, from, msg_body);
-            fetch({
+            fetch('https://graph.facebook.com/v16.0/110855645334141/messages',{
                     method: "POST",
-                    url: `https://graph.facebook.com/v16.0/110855645334141/messages`,
                     data: {
                         messaging_product: "whatsapp",
                         type:"text",
