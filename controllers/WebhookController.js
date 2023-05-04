@@ -43,7 +43,6 @@ const PostWebHook = async(req, res) => {
                 }
             }
             
-            
             const postData = await fetch(`https://graph.facebook.com/v16.0/110855645334141/messages`,
                 {
                     method: 'POST',
@@ -54,8 +53,10 @@ const PostWebHook = async(req, res) => {
                     } 
                 }   
             ) 
-            if (postData) {
-                console.log(postData.status);
+            if (postData.status == '401' || postData.status == '400') {
+                console.log("Sending error", postData.status);
+            } else {
+                console.log("Successfully Added!")
             }
         }
     }
