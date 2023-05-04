@@ -43,7 +43,7 @@ const PostWebHook = async(req, res) => {
                 }
             }
             
-            const fetch = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,
+            const postData = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,
                 {
                     method: 'POST',
                     body: JSON.stringify(data),
@@ -54,7 +54,7 @@ const PostWebHook = async(req, res) => {
                 }   
             
             ) 
-            if (fetch) {
+            if (postData) {
                 console.log("sent");
             }
         }
