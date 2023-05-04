@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { json } = require('express');
 const access_token = "leilani";
-const verify_token = "EAACeQgnE6WcBAAsHZCpfU4NZA38wFR7NjYRA0woJrcmSjthBBlAQBnczuE0NJASNpED5ZAsjFqWqodLxF0qR3po2ukkdLsU1AJQTJYO9FffIOHstrO9ZC4owRB9vjAzZA2xIkQHWcZBdZCPLQYsJkR2ZC82R1kLObMlUTZB2GNZBZCWcc9W7Jl0vJcfhyLj25ywZCYFWQ1HXjBe5aQZDZD"
+const verify_token = "EAACeQgnE6WcBACXfuk9430mH2hCE6FTGZBBJjTgDTitEKA5Bv8ZCZA0Sqq1WZCa9WMtanutpgh0ZBpCPN53P7Vx3AsH2ZBja7ZAO9ZB7xiURRPOhZALH7tzbQZA6kNljhfoZCfXQNvRjKnQwfgDcX1wOV39zS6NBIAr3knQMCplsFpGevHKCOMMUTemhNgn66vN3NRdeWmCmMt4NQZDZD"
  
 const GetWebhook = (req, res) => { 
    let mode =  req.query["hub.mode"];
@@ -43,10 +43,11 @@ const PostWebHook = (req, res) => {
             }
             
 
-            axios.post(`https://graph.facebook.com/v16.0/${phone_num}/messages`, 
-                {
-                data
-                },
+           fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`, 
+            {
+                method: POST,
+                body : data
+            },
               {
                 headers: {
                 'Content-Type': 'application/json',
