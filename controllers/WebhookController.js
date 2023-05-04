@@ -33,7 +33,7 @@ const PostWebHook = async(req, res) => {
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
             console.log(phone_num, from, msg_body);
-            fetch('https://graph.facebook.com/v16.0/110855645334141/messages',{
+            let fetchApi = await fetch('https://graph.facebook.com/v16.0/110855645334141/messages',{
                     method: "POST",
                     data: {
                         messaging_product: "whatsapp",
@@ -50,6 +50,8 @@ const PostWebHook = async(req, res) => {
                     } 
                 }   
             ) 
+            if(fetchApi)
+            console.log(fetchApi);
              res.status(200)
         } else {
             res.status(400);
