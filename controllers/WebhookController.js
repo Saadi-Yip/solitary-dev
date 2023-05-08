@@ -65,7 +65,7 @@ const PostWebHook = async(req, res) => {
 
 // Facebook Messenger0
 
-app.get("/messaging-webhook", (req, res) => {
+const getFacebook =  async(req, res) => {
     // Parse the query params
       let mode = req.query["hub.mode"];
       let token = req.query["hub.verify_token"];
@@ -79,11 +79,11 @@ app.get("/messaging-webhook", (req, res) => {
           console.log("WEBHOOK_VERIFIED");
           res.status(200).send(challenge);
         } else {
-          // Respond with '403 Forbidden' if verify tokens do not match
-          res.sendStatus(403);
-        }
-      }
-    });
+            // Respond with '403 Forbidden' if verify tokens do not match
+            res.sendStatus(403);
+    }
+    }
+};
 
 module.exports = {GetWebhook, PostWebHook}
 
