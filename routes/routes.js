@@ -43,7 +43,7 @@ router.route("/project/:id")
   router.post("/webhook", WebhookController.PostWebHook);
   
   // Facebook API
-  router.post("/messaging-webhook", WebhookController.getFacebook);
+  router.get("/messaging-webhook", WebhookController.getFacebook);
 
 
 // -- /*** Export all Routes ***/ -- // 
