@@ -2,7 +2,7 @@ const axios = require("axios");
 const { json } = require("express");
 const access_token = "leilani";
 const post_token =
-  "EAACeQgnE6WcBAIOZC8dXoJ8VNdBIQX01wO2YCad8Xzr2IZBQsztaDm67gm7lWCwXhmik9d6djPmCJooX4nqb9IvonW3XO3rpkSeKwfFWJ7LdTHzR4wjicySmdhfJpu3CXUlfqSUlaT9yRtw2gTFBZCbLwt08bz2BXMriNnQUk4Ez3aSMooPldzQusOcYCp6G6lgeaOASQZDZD";
+  "EAACeQgnE6WcBAJBjod0ox1Scewz3PZB407Sw1t18xYF8VyD2uoLnzZB1LA7Mc7OzxSZBf7fmFjLIOEeuBjkfG8nmQP4T29aA3QFMS5uBFmo6ab4NFvId31naG3LX57kXeH6YGQNfSljWLnZBUyGxNdaUCk2y2tu8O14Gi63cT4yj2ZBxq1b2w89qaGgx9ZAJAZCqhJ9PNee9AZDZD";
 const request = require("request");
 const GetWebhook = (req, res) => {
   let mode = req.query["hub.mode"];
@@ -36,52 +36,30 @@ const PostWebHook = async (req, res) => {
       let msg_body =
         body_params.entry[0].changes[0].value.messages[0].text.body;
       console.log("phone number....", phone_num, post_token);
-      const options = {
-        url: `https://graph.facebook.com/v16.0/${phone_num}/messages`,
-        method: "POST",
-        data: JSON.stringify({
-          messaging_product: "whatsapp",
-          type: "text",
-          recipient_type: "individual",
-          to: from,
-          preview_url: false,
-          text: {
-            body: "asdds i...",
-          },
-        }),
-        headers: {
-          "Content-Length": 500,
-          Accept: "application/json",
-          Authorization: "Bearer " + post_token,
-        },
-      };
-      request(options, function (err, res, body) {
-        let json = JSON.parse(body);
-        console.log(json);
-      });
+      
 
-      //   let fetchApi = await fetch(
-      //     `https://graph.facebook.com/v16.0/${phone_num}/messages`,
-      //     {
-      //      method: POST,
-      //       data: {
-      //         messaging_product: "whatsapp",
-      //         type: "text",
-      //         recipient_type: "individual",
-      //         to: from,
-      //         text: {
-      //           preview_url: false,
-      //           body: "asdds i...",
-      //         },
-      //       },
-      //       headers: {
-      //         Authorization: "Bearer " + post_token,
-      //         Content_Type: "application/json",
-      //       },
-      //     }
-      //   );
-      //   if (fetchApi) console.log("Fetch Api........");
-      //   res.status(200);
+        let fetchApi = await axios(
+          `https://graph.facebook.com/v16.0/${phone_num}/messages`,
+          {
+           method: POST,
+            data: JSON.stringify({
+              messaging_product: "whatsapp",
+              type: "text",
+              recipient_type: "individual",
+              to: from,
+              preview_url: false,
+              text: {
+                body: "asdds i...",
+              },
+            }),
+            headers: {
+              Authorization: "Bearer " + post_token,
+              Content_Type: "application/json",
+            },
+          }
+        );
+        if (fetchApi) console.log("Fetch Api........");
+        res.status(200);
     } else {
       res.status("main if failed! ", 403);
     }
