@@ -7,6 +7,8 @@ const CategoryController = require("../controllers/CategoryController");
 const PortfolioController = require('../controllers/PortfolioController');
 const WebhookController = require('../controllers/WebhookController');
 //-- ********************* Routes ********************* --// 
+require('dotenv').config()
+const { sendMessage, getTextMessageInput } = require("../utils/SendMessage");
 
 router.get("/", (req,res) =>{
   res.send("Solitary Dev Api")
@@ -42,6 +44,22 @@ router.route("/project/:id")
   router.get("/webhook",  WebhookController.GetWebhook);
   router.post("/webhook", WebhookController.PostWebHook);
   
+
+  router.get('/chat', function(req, res, next) {
+    var data = getTextMessageInput(process.env.RECIPIENT_WAID, 'Hi Saad');
+    sendMessage(data)
+      .then(function (response) {
+        console.log("response: ",response)
+        res.status(201).json({status: 'OK'});
+        return;
+      })
+      .catch(function (error) {
+        console.log(error);
+        return;
+      });
+  });
+
+
   // Facebook API
   router.get("/messaging-webhook", WebhookController.GetFacebook);
 
