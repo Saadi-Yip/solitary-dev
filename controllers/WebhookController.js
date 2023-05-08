@@ -50,10 +50,7 @@ const PostWebHook = async (req, res) => {
                 },
             },
         headers: {
-            'Accept': 'application/json',
-            'Accept-Charset': 'utf-8',
-            'User-Agent': 'my-reddit-client',
-            'Authorization': "Bearer " + post_token,
+            'Accept': 'application/json', 
         }
     };
         request(options, function(err, res, body) {
