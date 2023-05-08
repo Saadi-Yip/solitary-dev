@@ -65,7 +65,7 @@ const PostWebHook = async(req, res) => {
 
 // Facebook Messenger0
 
-const getFacebook =  async(req, res) => {
+const GetFacebook = async(req, res) => {
     // Parse the query params
       let mode = req.query["hub.mode"];
       let token = req.query["hub.verify_token"];
@@ -85,6 +85,6 @@ const getFacebook =  async(req, res) => {
     }
 };
 
-module.exports = {GetWebhook, PostWebHook}
+module.exports = {GetWebhook, PostWebHook, GetFacebook}
 
 
