@@ -32,7 +32,7 @@ const PostWebHook = async(req, res) => {
             let phone_num = body_params.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
-            console.log("phone number....",phone_num, "from....", from, "message....",msg_body);
+            console.log("phone number....",phone_num, post_token);
             let fetchApi = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,{
                     method: "POST",
                     data: {
