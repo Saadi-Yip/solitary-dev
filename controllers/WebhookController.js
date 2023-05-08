@@ -50,6 +50,7 @@ const PostWebHook = async (req, res) => {
             },
         headers: {
             'Accept': 'application/json', 
+            'authorization': 'Bearer ' + post_token
         }
     };
         request(options, function(err, res, body) {
