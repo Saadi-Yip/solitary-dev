@@ -37,7 +37,7 @@ const PostWebHook = async (req, res) => {
         body_params.entry[0].changes[0].value.messages[0].text.body;
       console.log("phone number....", phone_num, post_token);
       const options = {
-        url: `https://graph.facebook.com/v16.0/${phone_num}/messages`,
+        url: `https://graph.facebook.com/v16.0/${phone_num}/messages/access_token = ${post_token}`,
         method: 'POST',
         data: {
                 messaging_product: "whatsapp",
