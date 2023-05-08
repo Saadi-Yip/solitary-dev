@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { json } = require('express');
 const access_token = "leilani";
-const post_token = "EAACeQgnE6WcBACKMFPZBQEIRQuMjZBRKyQZCfOPdhv2FDZCP9sNfKgrToXwU5m3YF9TabHQp2yGCJ97DDz6cuqskfsRlFbpwmqvcsMSSXgY7IGkLlNkMTEteB84LQzuVp1XR5abYIzVGFiTybnHUTfpK4EoQ3FaIoyO8UIKbNB5bR6drjZA547e3373SZClY2blFOJ3lWrLgZDZD"
+const post_token = "EAACeQgnE6WcBAGBvbv4bvVGNiUZAV7yyjIqjOZCZBFE3C9Lvhpy65MvBMOQh8S3wRw2fGb855Vu8NhtTX2zVZCHPsDy3AAc58eNNjeYhHhhvv1WnhbUIWXNRbsBE2TuLUIGA8hDZC3seAhWlg1RLL4EPIZBqWncSyaOkYBncySxxdjJB9jZCGloY7le7BXZA6c2CWFUfsZCCmeQZDZD"
  
 const GetWebhook = (req, res) => { 
     
@@ -32,21 +32,21 @@ const PostWebHook = async(req, res) => {
             let phone_num = body_params.entry[0].changes[0].value.metadata.phone_number_id;
             let from = body_params.entry[0].changes[0].value.messages[0].from;
             let msg_body = body_params.entry[0].changes[0].value.messages[0].text.body;
-            console.log(phone_num, from, msg_body);
+            console.log("phone number....",phone_num, "from....", from, "message....",msg_body);
             let fetchApi = await fetch(`https://graph.facebook.com/v16.0/${phone_num}/messages`,{
                     method: "POST",
                     data: {
                         "messaging_product": "whatsapp",
                         "type":"text",
                         "recipient_type":"individual",
-                        "to": 923056483484,
+                        "to": from,
                         "text": {
                             "preview_url":false,
                             "body":"Hi..."
                         }
                     },
                     headers: {
-                        'Authorization': 'Bearer EAACeQgnE6WcBALvkDT1XyrwBpeKlZC8HNZC6IBW72PW5fWt51kS9ZBhhL3tQLPEOQraWv0r6zBTqWjsoUTidGb216gYsdk8wcN225vs4TmIkGucHwQoCzbrCiWqAKymgJfJ5PHnOBLLCZBU4UbMAWFvjHA4skrUQZBg7xognh8LSGGeOVs7dNaZBWcJNiUyzelT0t21KMhxgZDZD' ,
+                        'Authorization': 'Bearer ' + post_token,
                         'Content_Type': 'application/json'
                     } 
                 }   
