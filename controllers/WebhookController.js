@@ -35,31 +35,13 @@ const PostWebHook = async (req, res) => {
       let from = body_params.entry[0].changes[0].value.messages[0].from;
       let msg_body =
         body_params.entry[0].changes[0].value.messages[0].text.body;
-      console.log("phone number....", phone_num, post_token);
-      
+      console.log("msg_body: " + msg_body);
 
-        let fetchApi = await axios(
-          `https://graph.facebook.com/v16.0/${phone_num}/messages`,
-          {
-           method: 'POST',
-            data: JSON.stringify({
-              messaging_product: "whatsapp",
-              type: "text",
-              recipient_type: "individual",
-              to: from,
-              preview_url: false,
-              text: {
-                body: "asdds i...",
-              },
-            }),
-            headers: {
-              Authorization: "Bearer " + post_token,
-              Content_Type: "application/json",
-            },
-          }
-        );
-        if (fetchApi) console.log("Fetch Api........");
-        res.status(200);
+      res.status(200).json({
+        "from": from,
+        "message": msg_body
+      })
+         
     } else {
       res.status("main if failed! ", 403);
     }
