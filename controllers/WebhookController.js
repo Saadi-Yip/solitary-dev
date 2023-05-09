@@ -3,7 +3,6 @@ const { json } = require("express");
 const access_token = "leilani";
 const post_token =
   "EAACeQgnE6WcBAJBjod0ox1Scewz3PZB407Sw1t18xYF8VyD2uoLnzZB1LA7Mc7OzxSZBf7fmFjLIOEeuBjkfG8nmQP4T29aA3QFMS5uBFmo6ab4NFvId31naG3LX57kXeH6YGQNfSljWLnZBUyGxNdaUCk2y2tu8O14Gi63cT4yj2ZBxq1b2w89qaGgx9ZAJAZCqhJ9PNee9AZDZD";
-const request = require("request");
 const GetWebhook = (req, res) => {
   let mode = req.query["hub.mode"];
   let challenge = req.query["hub.challenge"];
@@ -29,7 +28,7 @@ const PostWebHook = async (req, res) => {
       body_params.entry[0].changes[0].value.messages &&
       body_params.entry[0].changes[0].value.messages[0]
     ) {
-      console.log("inner function");
+      console.log(req.body);
       let phone_num =
         body_params.entry[0].changes[0].value.metadata.phone_number_id;
       let from = body_params.entry[0].changes[0].value.messages[0].from;
