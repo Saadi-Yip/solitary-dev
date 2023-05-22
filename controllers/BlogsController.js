@@ -84,7 +84,7 @@ module.exports = {
    
           res.status(200).json({
             status:'success',
-            results: projects.length,
+            results: blogs.length,
             data: {
               blogs
             }
