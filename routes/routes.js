@@ -4,11 +4,11 @@ const upload = require("../middleware/MulterMiddleware");
 //-- *********** Import Controller Functions *********** --// 
 const ContactController = require("../controllers/ContactController"); 
 const CategoryController = require("../controllers/CategoryController");
-const PortfolioController = require('../controllers/PortfolioController');
-const WebhookController = require('../controllers/WebhookController');
-//-- ********************* Routes ********************* --// 
-require('dotenv').config()
-const { sendMessage, getTextMessageInput } = require("../utils/SendMessage");
+const PortfolioController = require('../controllers/PortfolioController'); 
+const BlogsController = require('../controllers/BlogsController');
+
+//!!  ********************* Routes ********************* --// 
+require('dotenv').config() 
 
 router.get("/", (req,res) =>{
   res.send("Solitary Dev Api")
@@ -40,28 +40,21 @@ router.route("/project/:id")
   .get(PortfolioController.edit_project) /*** Get a Single Project ***/
   .patch(upload.single('image'), PortfolioController.update_project) /*** Update Project ***/
   .delete(PortfolioController.remove_project) /*** Remove Project ***/
+ 
+ 
+  //! *** Blogs Routes ***!//
+  router.get("/blog", BlogsController.get_blog) /*** Get all Blogs ***/
+  router.post("/blog", upload.single('blog'), BlogsController.add_blog) /*** Add New Blogs ***/
+router.route("/blog/:id")
+  .get(BlogsController.single_blog) /*** Get a Single Blogs ***/
+  .patch(upload.single('blog'), BlogsController.update_blog) /*** Update Blogs ***/
+  .delete(BlogsController.remove_blog) /*** Remove Blogs ***/
 
-  router.get("/webhook",  WebhookController.GetWebhook);
-  router.post("/webhook", WebhookController.PostWebHook);
+   
   
+ 
 
-  router.get('/chat', function(req, res, next) {
-    var data = getTextMessageInput(process.env.RECIPIENT_WAID, 'Hi Saad');
-    sendMessage(data)
-      .then(function (response) {
-        console.log("response: ",response)
-        res.status(201).json({status: 'OK'});
-        return;
-      })
-      .catch(function (error) {
-        console.log(error);
-        return;
-      });
-  });
-
-
-  // Facebook API
-  router.get("/messaging-webhook", WebhookController.GetFacebook);
+ 
 
 
 // -- /*** Export all Routes ***/ -- // 
