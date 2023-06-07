@@ -125,8 +125,7 @@ module.exports = {
       console.log(image_upload);
       
       const data = {
-        title, 
-        blog_image,
+        title,  
         blog_image: image_upload&&image_upload.secure_url,
         image_id: image_upload&&image_upload.public_id,
         tag,

@@ -33,7 +33,9 @@ app.all('*', (req,res,next) =>{
 
 
 /*** Listen to Port ***/
-app.listen(PORT);
+app.listen(PORT, () =>{
+  console.log("app listening on port", PORT)
+});
 module.exports = app;
 
 
