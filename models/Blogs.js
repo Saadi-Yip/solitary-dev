@@ -39,7 +39,7 @@ let blogsSchema = new mongoose.Schema({
   },
   updatedAt: {
     type: Date,
-    default: false
+    required: false
   },
   blog_image: {
     type: String,
