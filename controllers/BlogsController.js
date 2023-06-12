@@ -59,7 +59,22 @@ module.exports = {
       queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
       console.log(JSON.parse(queryStr));
 
-      let query = Blogs.find(JSON.parse(queryStr));
+      let query = Blogs.find(JSON.parse(queryStr))
+      .populate({
+        path: "user",
+        model: "User",
+        select: "-password",
+      })
+      .populate({
+        path: "category",
+        model: "Category",
+        select: "name",
+      })
+      .populate({
+        path: "tags",
+        model: "Tag",
+        select: "name",
+      });
 
       // Sorting
       if (req.query.sort) {
@@ -160,6 +175,9 @@ module.exports = {
   remove_blog: async (req, res) => {
     try {
       let result = await Blogs.findById(req.params.id);
+      if( !result ) {
+        return res.status(404).send({ status: 'fail', message:"Couldn't find Blog"});
+      }
       await Blogs.findByIdAndDelete(req.params.id);
       await cloudinary.uploader.destroy(result.image_id);
       res.status(204).json({ status: 'success', data: null });
