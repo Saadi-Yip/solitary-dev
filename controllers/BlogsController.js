@@ -54,10 +54,7 @@ module.exports = {
       let excludedFields = ['page', 'limit', 'sort', 'fields'];
       excludedFields.forEach(field => delete queryObj[field]);
 
-      // Advance Filtering
-      let queryStr = JSON.stringify(queryObj);
-      queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-      console.log(JSON.parse(queryStr));
+       
 
       let query = Blogs.find(JSON.parse(queryStr))
       .populate({
