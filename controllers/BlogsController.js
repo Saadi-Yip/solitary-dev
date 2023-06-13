@@ -65,7 +65,6 @@ module.exports = {
       .populate({
         path: "category",
         model: "Category",
-        select: "name",
       })
       .populate({
         path: "tags",
@@ -128,7 +127,6 @@ module.exports = {
       .populate({
         path: "category",
         model: "Category",
-        select: "name",
       })
       .populate({
         path: "tags",
