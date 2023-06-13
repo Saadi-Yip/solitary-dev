@@ -120,6 +120,21 @@ module.exports = {
   single_blog: async (req, res) => {
     try {
       const blog = await Blogs.findById(req.params.id)
+      .populate({
+        path: "user",
+        model: "User",
+        select: "-password",
+      })
+      .populate({
+        path: "category",
+        model: "Category",
+        select: "name",
+      })
+      .populate({
+        path: "tags",
+        model: "Tag",
+        select: "name",
+      });
       res.status(200).json({
         status: 'success',
         data: {
