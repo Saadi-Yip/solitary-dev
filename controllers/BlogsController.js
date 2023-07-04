@@ -97,8 +97,8 @@ module.exports = {
 
       query = query.skip(skip).limit(limit);
 
+      const data = await Blogs.countDocuments();
       if (req.query.page) {
-        const data = await Blogs.countDocuments();
         if (skip >= data) throw new Error("This page does not exist");
       }
       // Execute the Query
@@ -107,6 +107,7 @@ module.exports = {
       res.status(200).json({
         status: 'success',
         results: blogs.length,
+        total: data,
         data: {
           blogs
         }
