@@ -127,8 +127,8 @@ module.exports = {
         name: name ? name: record.name,
         url: url ? url: record.url,
         category: category,
-        image: image_upload.secure_url,
-        image_id:image_upload.public_id,
+        image: image_upload ? image_upload.secure_url : record.image,
+        image_id: image_upload ? image_upload.public_id: record.image_id,
       };
       const project = await Project.findByIdAndUpdate(req.params.id, data, {
         new: true,
