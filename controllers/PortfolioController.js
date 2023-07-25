@@ -116,19 +116,19 @@ module.exports = {
     try {
       const { name, url, category } = req.body;
       let image_upload;
+      let record = await Project.findById(req.params.id);
       if (req.file) {
-        let record = await Project.findById(req.params.id);
         console.log(record);
         await cloudinary.uploader.destroy(record.image_id);
         image_upload = await cloudinary.uploader.upload(req.file.path);
       }
       console.log(image_upload);
       let data = {
-        name: name && name,
-        url: url && url,
-        category: category && category,
-        image: image_upload && image_upload.secure_url,
-        image_id: image_upload && image_upload.public_id,
+        name: name ? name: record.name,
+        url: url ? url: record.url,
+        category: category,
+        image: image_upload.secure_url,
+        image_id:image_upload.public_id,
       };
       const project = await Project.findByIdAndUpdate(req.params.id, data, {
         new: true,
