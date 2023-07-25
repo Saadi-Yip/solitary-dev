@@ -115,6 +115,7 @@ module.exports = {
   update_project: async (req, res) => {
     try {
       const { name, url, category } = req.body;
+      console.log(req.body);
       let image_upload;
       let record = await Project.findById(req.params.id);
       if (req.file) {
