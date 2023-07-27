@@ -3,9 +3,10 @@ require("./db");
 const app = express();
 const path = require("path");
 const cors = require("cors"); 
-const routes = require('./routes/routes');  
 const PORT = process.env.PORT || 5000; 
+const routes = require('./routes/routes');  
 const bodyParser = require('body-parser');
+const { AppError, errorHandler } = require('./utils/errorHandling'); 
 /************** Middlewares ****************/
 app.use(express.static(path.resolve('./public')));
 app.use(express.json({limit: '10kb'}));
@@ -23,18 +24,19 @@ let corsOptions = {
   }
 app.use(cors(corsOptions));
  
-
 /************** Routes ****************/
 app.use('/' ,routes); /*** Application Route ***/ 
 
-app.all('*', (req,res,next) =>{
-  res.send({message:"Invalid Route"})
-})
-
-
+ 
+app.use((req, res, next) => {
+  const err = new AppError(`Can't find ${req.originalUrl} on this server.`, 404);
+  next(err);
+});
+// Use the custom error handling middleware
+app.use(errorHandler);
 /*** Listen to Port ***/
-app.listen(PORT, () =>{
-  console.log("app listening on port", PORT)
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 module.exports = app;
 
